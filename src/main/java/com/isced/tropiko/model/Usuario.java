@@ -38,6 +38,11 @@ public class Usuario {
         this.senha = senha;
         this.nome = nome;
     }
+
+    public Usuario(Integer usuarioId) {
+        this.id = usuarioId;
+    }
+
     @PrePersist
     protected void onCreate() {
         if (this.dataCriacao == null) {

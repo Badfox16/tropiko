@@ -21,6 +21,10 @@ public class VendaService {
         vendaDAO.salvar(venda);
     }
 
+    public void salvarVenda(Venda venda) {
+        vendaDAO.salvar(venda);
+    }
+
     public Venda buscarVendaPorId(Integer id) {
         return vendaDAO.buscarPorId(id);
     }

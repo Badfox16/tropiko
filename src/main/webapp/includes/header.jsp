@@ -1,4 +1,4 @@
-
+<%@ page import="com.isced.tropiko.model.Usuario" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <header class="header_section">
     <div class="container">
@@ -34,9 +34,28 @@
                     </form>
                 </div>
                 <div class="quote_btn-container ml-0 ml-lg-4 d-flex justify-content-center">
-                    <a href="">
+                    <a href="<%= request.getContextPath() %>/carrinho.jsp">
                         Carrinho
                     </a>
+                </div>
+                <div class="quote_btn-container ml-0 ml-lg-4 d-flex justify-content-center">
+                    <%
+                        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+                        if (usuarioLogado != null) {
+                    %>
+                        <span>Olá, <%= usuarioLogado.getNome() %>!</span>
+                        <a href="<%= request.getContextPath() %>/usuario/controller.jsp?action=logout">
+                            Logout
+                        </a>
+                    <%
+                        } else {
+                    %>
+                        <a href="<%= request.getContextPath() %>/index.jsp">
+                            Login
+                        </a>
+                    <%
+                        }
+                    %>
                 </div>
             </div>
         </nav>
