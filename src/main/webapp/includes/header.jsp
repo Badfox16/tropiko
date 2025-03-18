@@ -23,7 +23,7 @@
                             <a class="nav-link" href="<%= request.getContextPath() %>/frutas.jsp"> Frutas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<%= request.getContextPath() %>/servicos.jsp"> Services </a>
+                            <a class="nav-link" href="<%= request.getContextPath() %>/servicos.jsp"> Serviços </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<%= request.getContextPath() %>/contacto.jsp">Fale connosco</a>
