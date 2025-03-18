@@ -85,6 +85,40 @@ public class FrutaDAO {
         }
     }
 
+    public List<Fruta> listarPorNomeComPaginacao(String nome, int offset, int itensPorPagina) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            String query = "SELECT f FROM Fruta f";
+            if (nome != null && !nome.isEmpty()) {
+                query += " WHERE LOWER(f.nome) LIKE LOWER(:nome)";
+            }
+            var typedQuery = em.createQuery(query, Fruta.class);
+            if (nome != null && !nome.isEmpty()) {
+                typedQuery.setParameter("nome", "%" + nome + "%");
+            }
+            return typedQuery.setFirstResult(offset).setMaxResults(itensPorPagina).getResultList();
+        } finally {
+            em.close();
+        }
+    }
+    
+    public int contarPorNome(String nome) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            String query = "SELECT COUNT(f) FROM Fruta f";
+            if (nome != null && !nome.isEmpty()) {
+                query += " WHERE LOWER(f.nome) LIKE LOWER(:nome)";
+            }
+            var typedQuery = em.createQuery(query, Long.class);
+            if (nome != null && !nome.isEmpty()) {
+                typedQuery.setParameter("nome", "%" + nome + "%");
+            }
+            return typedQuery.getSingleResult().intValue();
+        } finally {
+            em.close();
+        }
+    }
+
     public void atualizar(Fruta fruta) {
         EntityManager em = emf.createEntityManager();
         try {

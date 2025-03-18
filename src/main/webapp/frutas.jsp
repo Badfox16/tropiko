@@ -5,14 +5,14 @@
 <%@ page import="com.isced.tropiko.model.Fruta" %>
 <%
     // Parâmetros de pesquisa e paginação
-    String categoriaFiltro = request.getParameter("categoria");
+    String nomeFiltro = request.getParameter("nome");
     String paginaParam = request.getParameter("pagina");
     int paginaAtual = (paginaParam != null) ? Integer.parseInt(paginaParam) : 1;
     int itensPorPagina = 5;
 
     FrutaService frutaService = new FrutaService(new com.isced.tropiko.dao.FrutaDAO());
-    List<Fruta> frutas = frutaService.listarFrutasPorCategoria(categoriaFiltro, paginaAtual, itensPorPagina);
-    int totalFrutas = frutaService.contarFrutasPorCategoria(categoriaFiltro);
+    List<Fruta> frutas = frutaService.listarFrutasPorNome(nomeFiltro, paginaAtual, itensPorPagina);
+    int totalFrutas = frutaService.contarFrutasPorNome(nomeFiltro);
     int totalPaginas = (int) Math.ceil((double) totalFrutas / itensPorPagina);
 %>
 <html>
@@ -37,7 +37,7 @@
         <form method="get" action="frutas.jsp" class="mb-4">
             <div class="row">
                 <div class="col-md-8">
-                    <input type="text" name="categoria" class="form-control" placeholder="Filtrar por categoria" value="<%= categoriaFiltro != null ? categoriaFiltro : "" %>">
+                    <input type="text" name="nome" class="form-control" placeholder="Pesquisar por nome" value="<%= nomeFiltro != null ? nomeFiltro : "" %>">
                 </div>
                 <div class="col-md-4">
                     <button type="submit" class="btn btn-primary" style="background-color: #fc5d35; border: none;">
@@ -94,7 +94,7 @@
                         for (int i = 1; i <= totalPaginas; i++) {
                     %>
                     <li class="page-item <%= (i == paginaAtual) ? "active" : "" %>">
-                        <a class="page-link" href="frutas.jsp?pagina=<%= i %>&categoria=<%= categoriaFiltro != null ? categoriaFiltro : "" %>">
+                        <a class="page-link" href="frutas.jsp?pagina=<%= i %>&nome=<%= nomeFiltro != null ? nomeFiltro : "" %>">
                             <%= i %>
                         </a>
                     </li>
