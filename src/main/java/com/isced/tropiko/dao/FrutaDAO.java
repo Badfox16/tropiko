@@ -2,75 +2,77 @@ package com.isced.tropiko.dao;
 
 import com.isced.tropiko.model.Fruta;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
 import java.util.List;
 
 public class FrutaDAO {
 
-    private EntityManager entityManager;
-
-    public FrutaDAO(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("tropikoPU");
 
     public void salvar(Fruta fruta) {
-        EntityTransaction transaction = entityManager.getTransaction();
+        EntityManager em = emf.createEntityManager();
         try {
-            transaction.begin();
-            entityManager.persist(fruta);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-            throw e;
+            em.getTransaction().begin();
+            em.persist(fruta);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
         }
     }
 
     public Fruta buscarPorId(Integer id) {
-        return entityManager.find(Fruta.class, id);
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.find(Fruta.class, id);
+        } finally {
+            em.close();
+        }
     }
 
     public List<Fruta> listarTodos() {
-        return entityManager.createQuery("SELECT f FROM Fruta f", Fruta.class).getResultList();
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery("SELECT f FROM Fruta f", Fruta.class).getResultList();
+        } finally {
+            em.close();
+        }
     }
 
     public List<Fruta> listarPorCategoria(String categoria) {
-        return entityManager.createQuery(
-                        "SELECT f FROM Fruta f WHERE f.categoria = :categoria", Fruta.class)
-                .setParameter("categoria", categoria)
-                .getResultList();
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery("SELECT f FROM Fruta f WHERE f.categoria = :categoria", Fruta.class)
+                    .setParameter("categoria", categoria)
+                    .getResultList();
+        } finally {
+            em.close();
+        }
     }
 
     public void atualizar(Fruta fruta) {
-        EntityTransaction transaction = entityManager.getTransaction();
+        EntityManager em = emf.createEntityManager();
         try {
-            transaction.begin();
-            entityManager.merge(fruta);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-            throw e;
+            em.getTransaction().begin();
+            em.merge(fruta);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
         }
     }
 
     public void deletar(Integer id) {
-        EntityTransaction transaction = entityManager.getTransaction();
+        EntityManager em = emf.createEntityManager();
         try {
-            transaction.begin();
-            Fruta fruta = entityManager.find(Fruta.class, id);
+            Fruta fruta = em.find(Fruta.class, id);
             if (fruta != null) {
-                entityManager.remove(fruta);
+                em.getTransaction().begin();
+                em.remove(fruta);
+                em.getTransaction().commit();
             }
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-            throw e;
+        } finally {
+            em.close();
         }
     }
 }

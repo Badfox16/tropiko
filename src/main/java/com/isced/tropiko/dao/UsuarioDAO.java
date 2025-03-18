@@ -64,5 +64,23 @@ public class UsuarioDAO {
             em.close();
         }
     }
+
+   // Metodo de Login
+    public Usuario login(String email, String senha) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery(
+                    "SELECT u FROM Usuario u WHERE u.email = :email AND u.senha = :senha", Usuario.class)
+                    .setParameter("email", email)
+                    .setParameter("senha", senha)
+                    .getSingleResult();
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+
 }
 

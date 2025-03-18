@@ -10,6 +10,7 @@ import java.time.Instant;
 @Table(name = "frutas")
 public class Fruta {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 

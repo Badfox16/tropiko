@@ -29,4 +29,8 @@ public class UsuarioService {
     public void removerUsuario(Integer id) {
         usuarioDAO.deletar(id);
     }
+
+    public Usuario loginUsuario(String email, String senha) {
+        return usuarioDAO.login(email, senha);
+    }
 }

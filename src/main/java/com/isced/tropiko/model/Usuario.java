@@ -9,6 +9,7 @@ import java.time.Instant;
 @Table(name = "usuarios")
 public class Usuario {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -32,6 +33,7 @@ public class Usuario {
 
     public Usuario() {}
     public Usuario(String email, String senha, String nome) {
+        this.id = null;
         this.email = email;
         this.senha = senha;
         this.nome = nome;
