@@ -67,6 +67,9 @@ INSERT INTO usuarios (nome, email, senha, tipo) VALUES
 ('Maria Oliveira', 'maria@exemplo.com', 'senha456', 'CLIENTE'),
 ('Carlos Pereira', 'carlos@exemplo.com', 'senha789', 'ADMIN');
 INSERT INTO frutas (nome, descricao, preco, estoque, categoria, imagem_url) VALUES
-('Maçã', 'Fruta doce e crocante, rica em fibras e vitaminas, ideal para lanches e sobremesas.', 95.00, 100, 'OUTRA', 'uploads/maca.jpg'),
-('Banana', 'Fruta rica em potássio, excelente para energia rápida e saúde muscular, perfeita para lanches e smoothies.', 50.00, 150, 'TROPICAL', 'uploads/banana.jpg'),
-('Laranja', 'Fruta cítrica e refrescante, cheia de vitamina C, ótima para sucos e fortalecer o sistema imunológico.', 75.00, 80, 'CÍTRICA', 'uploads/laranja.jpg');
+('Maçã', 'Fruta doce e crocante, rica em fibras e vitaminas, ideal para lanches e sobremesas.', 95.00, 100, 'OUTRA', 'uploads/maca.png'),
+('Banana', 'Fruta rica em potássio, excelente para energia rápida e saúde muscular, perfeita para lanches e batidos.', 50.00, 150, 'TROPICAL', 'uploads/banana.png'),
+('Laranja', 'Fruta cítrica e refrescante, cheia de vitamina C, ótima para sucos e fortalecer o sistema imunológico.', 75.00, 80, 'CÍTRICA', 'uploads/laranja.png'),
+('Manga', 'Fruta tropical doce e suculenta, rica em antioxidantes, perfeita para sobremesas e batidos.', 120.00, 60, 'TROPICAL', 'uploads/manga.png'),
+('Uva', 'Fruta pequena e doce, rica em antioxidantes, ideal para lanches e sobremesas.', 90.00, 200, 'BAGA', 'uploads/uva.png'),
+('Goiaba', 'Fruta tropical rica em vitamina C e fibras, excelente para sucos e sobremesas.', 110.00, 50, 'OUTRA', 'uploads/goiaba.png');

@@ -8,7 +8,7 @@
     String nomeFiltro = request.getParameter("nome");
     String paginaParam = request.getParameter("pagina");
     int paginaAtual = (paginaParam != null) ? Integer.parseInt(paginaParam) : 1;
-    int itensPorPagina = 5;
+    int itensPorPagina = 4;
 
     FrutaService frutaService = new FrutaService(new com.isced.tropiko.dao.FrutaDAO());
     List<Fruta> frutas = frutaService.listarFrutasPorNome(nomeFiltro, paginaAtual, itensPorPagina);
@@ -70,7 +70,7 @@
             </div>
             <div class="col-md-4 d-flex justify-content-center align-items-center">
                 <div class="fruit_img-box d-flex justify-content-center align-items-center">
-                    <img src="<%= fruta.getImagemUrl() != null ? fruta.getImagemUrl() : "assets/images/default-fruit.png" %>"
+                    <img height="220" src="<%= fruta.getImagemUrl() != null ? fruta.getImagemUrl() : "assets/images/default-fruit.png" %>"
                          alt="<%= fruta.getNome() %>" class="" width="250px" />
                 </div>
             </div>
