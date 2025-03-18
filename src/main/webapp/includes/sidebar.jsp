@@ -60,7 +60,7 @@
     </ul>
     <hr>
     <div class="d-flex flex-column">
-        <a href="<%= request.getContextPath() %>/logout"
+        <a href="<%= request.getContextPath() %>/usuario/controller.jsp?action=logout"
            class="d-flex align-items-center text-white text-decoration-none m-2 btn"
            style="background-color: #fc5d35; border: none;">
             <i class="fa fa-sign-out mx-2"></i>

@@ -5,12 +5,6 @@
 <%@ include file="./includes/headCliente.jsp" %>
 
 <body>
-<div class="hero_area">
-    <!-- header section -->
-    <%@ include file="./includes/header.jsp" %>
-    <!-- end header section -->
-</div>
-
 <!-- seção de login -->
 <section class="login_section layout_padding">
     <div class="container">
@@ -18,7 +12,7 @@
             <div class="col-md-6">
                 <div class="form_container">
                     <h2 class="custom_heading text-center">Login</h2>
-                    <form action="usuario" method="post">
+                    <form action="usuario/controller.jsp" method="post">
                         <input type="hidden" name="action" value="login" />
                         <div class="form-group">
                             <label for="email">Email:</label>
@@ -37,9 +31,10 @@
                             <p>Não tem uma conta? <a href="registro.jsp" style="color: #fc5d35;">Registre-se</a></p>
                         </div>
                     </form>
-                    <% if (request.getAttribute("erro") != null) { %>
+                    <% if (session.getAttribute("erro") != null) { %>
                         <div class="alert alert-danger mt-3">
-                            <%= request.getAttribute("erro") %>
+                            <%= session.getAttribute("erro") %>
+                            <% session.removeAttribute("erro"); %>
                         </div>
                     <% } %>
                 </div>

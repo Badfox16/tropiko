@@ -1,5 +1,6 @@
 <%@ page import="com.isced.tropiko.service.UsuarioService" %>
 <%@ page import="com.isced.tropiko.model.Usuario" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
     String action = request.getParameter("action");
@@ -12,7 +13,7 @@
         String senha = request.getParameter("senha");
 
         usuarioService.registrarUsuario(email, senha, nome);
-        response.sendRedirect("index.jsp"); // Redireciona para a página de login
+        response.sendRedirect(request.getContextPath() + "/index.jsp"); // Redireciona para a página de login
     } else if ("deletar".equals(action)) {
         // Lógica de exclusão
         String id = request.getParameter("id");
@@ -20,7 +21,7 @@
         if (id != null) {
             usuarioService.removerUsuario(Integer.parseInt(id));
         }
-        response.sendRedirect("index.jsp"); // Redireciona para a página principal
+        response.sendRedirect(request.getContextPath() + "/usuario/"); // Redireciona para a página principal
     } else if ("login".equals(action)) {
         // Lógica de login
         String email = request.getParameter("email");
@@ -33,18 +34,22 @@
 
             // Verifica o tipo de usuário e redireciona
             if ("ADMIN".equals(usuario.getTipo())) {
-                response.sendRedirect("./index.jsp");
+                response.sendRedirect(request.getContextPath() + "/usuario/");
             } else if ("CLIENTE".equals(usuario.getTipo())) {
-                response.sendRedirect("../cliente/home.jsp");
+                response.sendRedirect(request.getContextPath() + "/home.jsp");
             } else {
                 request.setAttribute("erro", "Tipo de usuário inválido.");
-                request.getRequestDispatcher("../index.jsp").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/index.jsp");
             }
         } else {
             // Credenciais inválidas
-            request.setAttribute("erro", "Credenciais inválidas.");
-            request.getRequestDispatcher("../index.jsp").forward(request, response);
+            session.setAttribute("erro", "Credenciais inválidas.");
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
         }
+    } else if ("logout".equals(action)) {
+        // Lógica de logout
+        session.invalidate();
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
     } else {
         // Ação inválida
         response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Ação inválida.");

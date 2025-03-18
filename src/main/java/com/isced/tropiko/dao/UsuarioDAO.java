@@ -3,6 +3,7 @@ package com.isced.tropiko.dao;
 import com.isced.tropiko.model.Usuario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.Persistence;
 
 import java.util.List;
@@ -67,19 +68,19 @@ public class UsuarioDAO {
 
    // Metodo de Login
     public Usuario login(String email, String senha) {
-        EntityManager em = emf.createEntityManager();
-        try {
-            return em.createQuery(
-                    "SELECT u FROM Usuario u WHERE u.email = :email AND u.senha = :senha", Usuario.class)
-                    .setParameter("email", email)
-                    .setParameter("senha", senha)
-                    .getSingleResult();
-        } catch (Exception e) {
-            return null;
-        } finally {
-            em.close();
-        }
+    EntityManager em = emf.createEntityManager();
+    try {
+        // Consulta para verificar email e senha
+        return em.createQuery("SELECT u FROM Usuario u WHERE u.email = :email AND u.senha = :senha", Usuario.class)
+                 .setParameter("email", email)
+                 .setParameter("senha", senha) // Certifique-se de que a senha está sendo comparada corretamente
+                 .getSingleResult();
+    } catch (NoResultException e) {
+        return null; // Retorna null se as credenciais forem inválidas
+    } finally {
+        em.close();
     }
+}
 
 
 }
