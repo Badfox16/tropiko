@@ -27,8 +27,13 @@ public class FrutaService {
         return frutaDAO.listarTodos();
     }
 
-    public List<Fruta> listarFrutasPorCategoria(String categoria) {
-        return frutaDAO.listarPorCategoria(categoria);
+    public List<Fruta> listarFrutasPorCategoria(String categoria, int pagina, int itensPorPagina) {
+        int offset = (pagina - 1) * itensPorPagina;
+        return frutaDAO.listarPorCategoriaComPaginacao(categoria, offset, itensPorPagina);
+    }
+
+    public int contarFrutasPorCategoria(String categoria) {
+        return frutaDAO.contarPorCategoria(categoria);
     }
 
     public void atualizarFruta(Fruta fruta) {
