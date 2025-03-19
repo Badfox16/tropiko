@@ -25,7 +25,10 @@ public class VendaDAO {
     public Venda buscarPorId(Integer id) {
         EntityManager em = emf.createEntityManager();
         try {
-            return em.find(Venda.class, id);
+            return em.createQuery(
+                    "SELECT v FROM Venda v JOIN FETCH v.usuario WHERE v.id = :id", Venda.class)
+                    .setParameter("id", id)
+                    .getSingleResult();
         } finally {
             em.close();
         }
@@ -35,6 +38,17 @@ public class VendaDAO {
         EntityManager em = emf.createEntityManager();
         try {
             return em.createQuery("SELECT v FROM Venda v", Venda.class).getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Object[]> listarVendasComNomeUsuario() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery(
+                    "SELECT v, u.nome FROM Venda v JOIN v.usuario u", Object[].class)
+                    .getResultList();
         } finally {
             em.close();
         }

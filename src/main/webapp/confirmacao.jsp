@@ -16,7 +16,7 @@
         <p class="custom_heading-text">
             Obrigado por sua compra! Seu pedido foi processado com sucesso.
         </p>
-        <a href="<%= request.getContextPath() %>/cliente/home.jsp" class="btn btn-primary custom_dark-btn" style="background-color: #fc5d35; border: none;">
+        <a href="<%= request.getContextPath() %>/home.jsp" class="btn btn-primary custom_dark-btn" style="background-color: #fc5d35; border: none;">
             Voltar para a Página Inicial
         </a>
     </div>

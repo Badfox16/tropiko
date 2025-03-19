@@ -12,8 +12,8 @@
     <a href="<%= request.getContextPath() %>"
        class="d-flex flex-column align-items-center mb-3 text-white text-decoration-none">
         <span class="fs-4" style="font-weight: bolder;">Loja Online</span>
-        <span class="fs-4"><img src="<%= request.getContextPath() %>/assets/logo.png" alt="icone Loja Online" srcset=""
-                                width="80"></span>
+        <span class="fs-4"><img src="<%= request.getContextPath() %>/assets/images/card-item-1.png" alt="icone Loja Online" srcset=""
+                                width="75"></span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
@@ -27,18 +27,18 @@
                 </strong>
             </a>
         </li>
+<%--        <li>--%>
+<%--            <a href="<%= request.getContextPath() %>/Cliente/index.jsp"--%>
+<%--               class="nav-link text-white mb-4 btn d-flex align-items-center"--%>
+<%--               style="background-color: #fc5d35; border: none;">--%>
+<%--                <strong>--%>
+<%--                    <i class="fa-solid fa-users mx-2"></i>--%>
+<%--                    <span>Clientes</span>--%>
+<%--                </strong>--%>
+<%--            </a>--%>
+<%--        </li>--%>
         <li>
-            <a href="<%= request.getContextPath() %>/Cliente/index.jsp"
-               class="nav-link text-white mb-4 btn d-flex align-items-center"
-               style="background-color: #fc5d35; border: none;">
-                <strong>
-                    <i class="fa-solid fa-users mx-2"></i>
-                    <span>Clientes</span>
-                </strong>
-            </a>
-        </li>
-        <li>
-            <a href="<%= request.getContextPath() %>/carrinho/index.jsp"
+            <a href="<%= request.getContextPath() %>/vendas/index.jsp"
                class="nav-link text-white mb-4 btn d-flex align-items-center"
                style="background-color: #fc5d35; border: none;">
                 <strong>

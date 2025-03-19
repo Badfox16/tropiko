@@ -44,4 +44,8 @@ public class VendaService {
     public void removerVenda(Integer id) {
         vendaDAO.deletar(id);
     }
+
+    public List<Object[]> listarVendasComNomeUsuario() {
+        return vendaDAO.listarVendasComNomeUsuario();
+    }
 }

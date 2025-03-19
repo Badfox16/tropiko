@@ -38,7 +38,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="fruit_img-box">
-              <img src="<%= fruta.getImagemUrl() != null ? request.getContextPath() + "/" + fruta.getImagemUrl() : request.getContextPath() + "/assets/images/default-fruta.png" %>"
+              <img src="<%= fruta.getImagemUrl() != null ? request.getContextPath() + "/" + fruta.getImagemUrl() : request.getContextPath() + "/assets/images/card-item-1.png" %>"
                    alt="Imagem da Fruta" class="img-fluid" />
             </div>
           </div>

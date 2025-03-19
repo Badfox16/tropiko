@@ -44,7 +44,7 @@ public class ItensVendaDAO {
         EntityManager em = emf.createEntityManager();
         try {
             return em.createQuery(
-                            "SELECT iv FROM ItensVenda iv WHERE iv.venda.id = :vendaId", ItensVenda.class)
+                    "SELECT iv FROM ItensVenda iv JOIN FETCH iv.fruta WHERE iv.venda.id = :vendaId", ItensVenda.class)
                     .setParameter("vendaId", vendaId)
                     .getResultList();
         } finally {

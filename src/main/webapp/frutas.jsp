@@ -70,7 +70,7 @@
             </div>
             <div class="col-md-4 d-flex justify-content-center align-items-center">
                 <div class="fruit_img-box d-flex justify-content-center align-items-center">
-                    <img height="220" src="<%= fruta.getImagemUrl() != null ? fruta.getImagemUrl() : "assets/images/default-fruit.png" %>"
+                    <img height="220" src="<%= fruta.getImagemUrl() != null ? fruta.getImagemUrl() : "assets/images/default-fruta.png" %>"
                          alt="<%= fruta.getNome() %>" class="" width="250px" />
                 </div>
             </div>

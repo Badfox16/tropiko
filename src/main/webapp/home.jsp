@@ -193,7 +193,7 @@
             </div>
             <div class="col-md-4 d-flex justify-content-center align-items-center">
                 <div class="fruit_img-box d-flex justify-content-center align-items-center">
-                    <img src="<%= fruta.getImagemUrl() != null ? fruta.getImagemUrl() : "assets/images/default-fruit.png" %>"
+                    <img src="<%= fruta.getImagemUrl() != null ? fruta.getImagemUrl() : request.getContextPath() + "/assets/images/default-fruta.png" %>"
                          alt="<%= fruta.getNome() %>" class="" width="250px" />
                 </div>
             </div>
